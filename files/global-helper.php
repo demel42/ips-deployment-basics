@@ -153,7 +153,7 @@ function HM_SwitchPowerStatus($instID)
     return $state;
 }
 
-function HM_SwitchPowerPulse($instID, $duration)
+function HM_SwitchPowerPulse($instID, $delay)
 {
     $time_start = microtime(true);
     $r = @RequestAction(IPS_GetObjectIDByIdent('STATE', $instID), true);
@@ -163,7 +163,7 @@ function HM_SwitchPowerPulse($instID, $duration)
         $n = HM_PauseWrites();
         IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($instID) . '\\STATE, true) failed after ' . $duration . 's, paused ' . $n . 's');
     }
-    IPS_Sleep(100);
+    IPS_Sleep($delay);
     $time_start = microtime(true);
     $r = @RequestAction(IPS_GetObjectIDByIdent('STATE', $instID), false);
     $duration = round(microtime(true) - $time_start, 2);
@@ -177,77 +177,91 @@ function HM_SwitchPowerPulse($instID, $duration)
 
 // ********* Dimmer (HM-LC-Dim1TPBU-FM, HmIP-BDT, HmIP-FDT)
 
+function HM_Dimmer_InstID4Level($instID)
+{
+    $type = Util_Gerate2Typ($instID);
+    switch ($type) {
+        case 'HM-LC-Dim1TPBU-FM':
+            $chan = HM_GetInstanceForChannel($instID, '1');
+            break;
+        default:
+            $chan = HM_GetInstanceForChannel($instID, '2');
+            break;
+    }
+    return $chan;
+}
+
 function HM_DimmerOn($instID)
 {
-    $chan2 = HM_GetInstanceForChannel($instID, '2');
+    $chan = HM_Dimmer_InstID4Level($instID);
     $level = 0.7;
     $time_start = microtime(true);
-    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan2), $level);
+    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan), $level);
     $duration = round(microtime(true) - $time_start, 2);
     if ($r == false) {
-        echo __FUNCTION__ . '(' . HM_PrintTarget($chan2) . ') failed after ' . $duration . 's' . PHP_EOL;
+        echo __FUNCTION__ . '(' . HM_PrintTarget($chan) . ') failed after ' . $duration . 's' . PHP_EOL;
         $n = HM_PauseWrites();
-        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan2) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
+        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
     }
     return $r;
 }
 
 function HM_DimmerOff($instID)
 {
-    $chan2 = HM_GetInstanceForChannel($instID, '2');
+    $chan = HM_Dimmer_InstID4Level($instID);
     $level = 0;
     $time_start = microtime(true);
-    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan2), $level);
+    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan), $level);
     $duration = round(microtime(true) - $time_start, 2);
     if ($r == false) {
-        echo __FUNCTION__ . '(' . HM_PrintTarget($chan2) . ') failed after ' . $duration . 's' . PHP_EOL;
+        echo __FUNCTION__ . '(' . HM_PrintTarget($chan) . ') failed after ' . $duration . 's' . PHP_EOL;
         $n = HM_PauseWrites();
-        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan2) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
+        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
     }
     return $r;
 }
 
 function HM_DimmerBrighter($instID)
 {
-    $chan2 = HM_GetInstanceForChannel($instID, '2');
-    $level = GetValueFloat(IPS_GetObjectIDByIdent('LEVEL', $chan2));
+    $chan = HM_Dimmer_InstID4Level($instID);
+    $level = GetValueFloat(IPS_GetObjectIDByIdent('LEVEL', $chan));
     $level = round($level, 1) + 0.1;
     if ($level > 1) {
         $level = 1;
     }
     $time_start = microtime(true);
-    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan2), $level);
+    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan), $level);
     $duration = round(microtime(true) - $time_start, 2);
     if ($r == false) {
-        echo __FUNCTION__ . '(' . HM_PrintTarget($chan2) . ') failed after ' . $duration . 's' . PHP_EOL;
+        echo __FUNCTION__ . '(' . HM_PrintTarget($chan) . ') failed after ' . $duration . 's' . PHP_EOL;
         $n = HM_PauseWrites();
-        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan2) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
+        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
     }
     return $r;
 }
 
 function HM_DimmerDarker($instID)
 {
-    $chan2 = HM_GetInstanceForChannel($instID, '2');
-    $level = GetValueFloat(IPS_GetObjectIDByIdent('LEVEL', $chan2));
+    $chan = HM_Dimmer_InstID4Level($instID);
+    $level = GetValueFloat(IPS_GetObjectIDByIdent('LEVEL', $chan));
     $level = round($level, 1) - 0.1;
     if ($level < 0) {
         $level = 0;
     }
     $time_start = microtime(true);
-    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan2), $level);
+    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan), $level);
     $duration = round(microtime(true) - $time_start, 2);
     if ($r == false) {
-        echo __FUNCTION__ . '(' . HM_PrintTarget($chan2) . ') failed after ' . $duration . 's' . PHP_EOL;
+        echo __FUNCTION__ . '(' . HM_PrintTarget($chan) . ') failed after ' . $duration . 's' . PHP_EOL;
         $n = HM_PauseWrites();
-        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan2) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
+        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
     }
     return $r;
 }
 
 function HM_DimmerSetLevel($instID, $level)
 {
-    $chan2 = HM_GetInstanceForChannel($instID, '2');
+    $chan = HM_Dimmer_InstID4Level($instID);
     $level = round($level / 100, 2);
     if ($level < 0) {
         $level = 0;
@@ -256,12 +270,12 @@ function HM_DimmerSetLevel($instID, $level)
         $level = 1;
     }
     $time_start = microtime(true);
-    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan2), $level);
+    $r = @RequestAction(IPS_GetObjectIDByIdent('LEVEL', $chan), $level);
     $duration = round(microtime(true) - $time_start, 2);
     if ($r == false) {
-        echo __FUNCTION__ . '(' . HM_PrintTarget($chan2) . ') failed after ' . $duration . 's' . PHP_EOL;
+        echo __FUNCTION__ . '(' . HM_PrintTarget($chan) . ') failed after ' . $duration . 's' . PHP_EOL;
         $n = HM_PauseWrites();
-        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan2) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
+        IPS_LogMessage(__FUNCTION__, 'RequestAction(' . HM_PrintTarget($chan) . '\\LEVEL, ' . $level . ') failed after ' . $duration . 's, paused ' . $n . 's');
     }
     return $r;
 }

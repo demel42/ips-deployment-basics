@@ -1,6 +1,6 @@
 {
-	"version": "24",
-	"tstamp": 1734173055,
+	"version": "25",
+	"tstamp": 1758544353,
 	"files": [
 		{
 			"filename": "instance-revise-helper.php",
@@ -16,11 +16,6 @@
 		{
 			"filename": "Fibaro-FGCD-001.php",
 			"name": "Fibaro FGCD-001",
-			"location": "Scripte\\System-Scripte\\Hilfsfunktionen zur Überarbeitung von Instanzen"
-		},
-		{
-			"filename": "HydrawiseZone.php",
-			"name": "HydrawiseZone",
 			"location": "Scripte\\System-Scripte\\Hilfsfunktionen zur Überarbeitung von Instanzen"
 		},
 		{

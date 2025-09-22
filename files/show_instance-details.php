@@ -60,15 +60,15 @@ function InstanceInfo(int $instID)
         if ($sc['LibraryID'] == $lib['LibraryID']) {
             $src = ($src != '' ? ' + ' : '') . 'ModuleStore';
             switch ($sc['Channel']) {
-            case 1:
-                $src .= '/Beta';
-                break;
-            case 2:
-                $src .= '/Testing';
-                break;
-            default:
-                break;
-        }
+                case 1:
+                    $src .= '/Beta';
+                    break;
+                case 2:
+                    $src .= '/Testing';
+                    break;
+                default:
+                    break;
+            }
             break;
         }
     }
@@ -85,13 +85,13 @@ function InstanceInfo(int $instID)
             $src = ($src != '' ? ' + ' : '') . $url;
             $branch = $r['ModuleBranch'];
             switch ($branch) {
-            case 'master':
-            case 'main':
-                break;
-            default:
-                $src .= '/' . $branch;
-                break;
-        }
+                case 'master':
+                case 'main':
+                    break;
+                default:
+                    $src .= '/' . $branch;
+                    break;
+            }
             break;
         }
     }

@@ -39,7 +39,7 @@ $setting = [
         ],
         4 => [
             'Value' => 4.0,
-            'Name'  => ' mäßiger Regen',
+            'Name'  => 'mäßiger Regen',
             'Icon'  => '',
             'Color' => -1,
         ],
