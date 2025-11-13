@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-// HmIP-SWSD
+// HmIP-SWSD-2
 $setting = [
     'name' => 'Rauchmelder',
     0      => [
@@ -29,14 +29,14 @@ $setting = [
         ],
         'TIME_OF_OPERATION_STATUS' => [
         ],
+        'ERROR_DEGRADED_CHAMBER' => [
+            'name'          => 'Rauchkammer',
+            'customProfile' => 'HM.SmokeDetectorChamberStatus',
+        ],
     ],
     1 => [
         'ERROR_CODE' => [
             'isHidden' => true,
-        ],
-        'ERROR_DEGRADED_CHAMBER' => [
-            'name'          => 'Rauchkammer',
-            'customProfile' => 'HM.SmokeDetectorChamberStatus',
         ],
         'SMOKE_DETECTOR_ALARM_STATUS' => [
             'name'          => 'Status',
@@ -53,6 +53,16 @@ $setting = [
         'SMOKE_DETECTOR_TEST_RESULT' => [
             'name'          => 'Test-Ergebnis',
             'customProfile' => 'HM.SmokeDetectorTestResult',
+            'doArchive'     => true,
+        ],
+        'SMOKE_LEVEL' => [
+            'name'          => 'Rauchstärke',
+            'customProfile' => 'HM.SmokeDetectorLevel',
+            'doArchive'     => true,
+        ],
+        'DIRT_LEVEL' => [
+            'name'          => 'Verschmutzungsgrad',
+            'customProfile' => 'HM.SmokeDetectorLevel',
             'doArchive'     => true,
         ],
         'isMain' => true,

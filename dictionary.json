@@ -1,6 +1,6 @@
 {
-	"version": "25",
-	"tstamp": 1758544353,
+	"version": "26",
+	"tstamp": 1763051093,
 	"files": [
 		{
 			"filename": "instance-revise-helper.php",
@@ -343,6 +343,11 @@
 			"filename": "HmIP-SWSD.php",
 			"location": "Scripte\\System-Scripte\\Hilfsfunktionen zur Überarbeitung von HomeMatic-Instanzen",
 			"name": "HmIP-SWSD"
+		},
+		{
+			"filename": "HmIP-SWSD-2.php",
+			"location": "Scripte\\System-Scripte\\Hilfsfunktionen zur Überarbeitung von HomeMatic-Instanzen",
+			"name": "HmIP-SWSD-2"
 		},
 		{
 			"filename": "HmIP-WRC2.php",
@@ -833,5 +838,10 @@
 			"location": "Scripte\\System-Scripte",
 			"name": "HomeMatic - fehlende Einträge in Geräte-Typen"
 		}
+		{
+			"filename": "HM-SmokeDetectorLevel.php",
+			"location": "Scripte\\System-Scripte\\Hilfsfunktionen für Variablenprofile",
+			"name": "HM.SmokeDetectorLevel"
+		},
 	]
 }
