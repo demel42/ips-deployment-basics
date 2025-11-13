@@ -837,11 +837,11 @@
 			"filename": "HM-missing-device-types.php",
 			"location": "Scripte\\System-Scripte",
 			"name": "HomeMatic - fehlende Einträge in Geräte-Typen"
-		}
+		},
 		{
 			"filename": "HM-SmokeDetectorLevel.php",
 			"location": "Scripte\\System-Scripte\\Hilfsfunktionen für Variablenprofile",
 			"name": "HM.SmokeDetectorLevel"
-		},
+		}
 	]
 }
