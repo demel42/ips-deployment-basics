@@ -1,6 +1,6 @@
 {
-	"version": "26",
-	"tstamp": 1763051093,
+	"version": "27",
+	"tstamp": 1773584851,
 	"files": [
 		{
 			"filename": "instance-revise-helper.php",
@@ -842,6 +842,16 @@
 			"filename": "HM-SmokeDetectorLevel.php",
 			"location": "Scripte\\System-Scripte\\Hilfsfunktionen für Variablenprofile",
 			"name": "HM.SmokeDetectorLevel"
+		},
+		{
+			"filename": "Local-SwitchMultiState.php",
+			"location": "Scripte\\System-Scripte\\Hilfsfunktionen für Variablenprofile",
+			"name": "Local.SwitchMultiState"
+		},
+		{
+			"filename": "Local-SwitchPowerCycle.php",
+			"location": "Scripte\\System-Scripte\\Hilfsfunktionen für Variablenprofile",
+			"name": "Local.SwitchPowerCycle"
 		}
 	]
 }

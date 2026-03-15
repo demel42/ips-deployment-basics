@@ -15,11 +15,11 @@ function Make_Bewegungsplan($destID)
     $acName = ['Rolladen schliessen', 'Rolladen öffnen'];
     $varName = ['Position geschlossen', 'Position geöffnet'];
     $varValue = [0.0 /* Unten */, 1.0 /* Oben */];
-    $envColor = [0x0541AF, 0xFAFF5A];
+    $evnColor = [0x0541AF, 0xFAFF5A];
 
     $varActionID = IPS_GetObjectIDByName('IPS.SetValue', GetLocalConfig('Aktions-Scripte'));
 
-    for ($i = 0; $i < 2; $i++) {
+    for ($i = 0; $i < count($acName); $i++) {
         $varID = IPS_CreateVariable(VARIABLETYPE_FLOAT);
         IPS_SetParent($varID, $evnID);
         IPS_SetName($varID, $varName[$i]);
@@ -34,7 +34,7 @@ function Make_Bewegungsplan($destID)
             'SUCCEED_LOG' => '{NAME} ({LOCATION2}) => {VALUE}',
             'VARIABLE'    => $varID,
         ];
-        IPS_SetEventScheduleActionEx($evnID, $i + 1, $acName[$i], $envColor[$i], $actionID, $actionParams);
+        IPS_SetEventScheduleActionEx($evnID, $i + 1, $acName[$i], $evnColor[$i], $actionID, $actionParams);
     }
 
     IPS_SetEventScheduleGroup($evnID, 0, 0b1111111);

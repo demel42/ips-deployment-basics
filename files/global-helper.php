@@ -48,10 +48,13 @@ function Util_IpInNet($net, $netmask, $ip)
 function Util_Gerate2Typ($deviceID)
 {
     $obj = IPS_GetObject($deviceID);
+    $typeName = '';
+    /*
     $typeName = $obj['ObjectInfo'];
     if ($typeName != '') {
         return $typeName;
     }
+     */
     $typIDs = IPS_GetChildrenIDs(GetLocalConfig('Geräte-Typen'));
     foreach ($typIDs as $typID) {
         $chldIDs = IPS_GetChildrenIDs($typID);

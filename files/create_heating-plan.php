@@ -14,11 +14,11 @@ function Make_Heizplan($destID)
 
     $varName = ['normale Temperatur', 'abgesenkte Temperatur', 'erhöhte Temperatur'];
     $varValue = [20.0, 18.0, 24.0];
-    $envColor = [0x6EA55A, 0x148CE6, 0xFA5555];
+    $evnColor = [0x6EA55A, 0x148CE6, 0xFA5555];
 
     $varActionID = IPS_GetObjectIDByName('IPS.SetValue', GetLocalConfig('Aktions-Scripte'));
 
-    for ($i = 0; $i < 3; $i++) {
+    for ($i = 0; $i < count($varName); $i++) {
         $varID = IPS_CreateVariable(VARIABLETYPE_FLOAT);
         IPS_SetParent($varID, $evnID);
         IPS_SetName($varID, $varName[$i]);
@@ -33,7 +33,7 @@ function Make_Heizplan($destID)
             'SUCCEED_LOG' => '{NAME} ({LOCATION2}) => {VALUE}',
             'VARIABLE'    => $varID,
         ];
-        IPS_SetEventScheduleActionEx($evnID, $i + 1, $varName[$i], $envColor[$i], $actionID, $actionParams);
+        IPS_SetEventScheduleActionEx($evnID, $i + 1, $varName[$i], $evnColor[$i], $actionID, $actionParams);
     }
 
     IPS_SetEventScheduleGroup($evnID, 0, 0b1111111);
