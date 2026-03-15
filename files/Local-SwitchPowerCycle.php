@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 $setting = [
-    'ProfileName'  => 'Local.PowerCycle',
+    'ProfileName'  => 'Local.SwitchPowerCycle',
     'ProfileType'  => VARIABLETYPE_INTEGER,
     'Icon'         => 'arrows-spin',
     'Prefix'       => '',
