@@ -1,6 +1,6 @@
 {
-	"version": "27",
-	"tstamp": 1773584851,
+	"version": "28",
+	"tstamp": 1774428679,
 	"files": [
 		{
 			"filename": "instance-revise-helper.php",
@@ -852,6 +852,11 @@
 			"filename": "Local-SwitchPowerCycle.php",
 			"location": "Scripte\\System-Scripte\\Hilfsfunktionen für Variablenprofile",
 			"name": "Local.SwitchPowerCycle"
+		},
+		{
+			"filename": "HmIP-DBB.php",
+			"location": "Scripte\\System-Scripte\\Hilfsfunktionen zur Überarbeitung von HomeMatic-Instanzen",
+			"name": "HmIP-DBB"
 		}
 	]
 }
